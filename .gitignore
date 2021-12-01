@@ -128,6 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.pgm
-.jpg
-.png
+*.pgm
+*.jpg
+*png
