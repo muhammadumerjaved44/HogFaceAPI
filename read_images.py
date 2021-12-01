@@ -12,10 +12,11 @@ import seaborn as sns
 from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
 import numpy as np
+import pickle
 
 from sklearn import preprocessing
 
-folder_path_list = glob.glob('faces/**/**')
+import pathlib
 
 images_list = []
 hog_list = []
