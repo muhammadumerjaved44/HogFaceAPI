@@ -98,3 +98,16 @@ cm = metrics.confusion_matrix(y_test, y_pred)
 sns.heatmap(cm , annot= True)
     
     return svm_model
+
+def save_obj (obj, filename):
+    filename = filename
+    outfile =  open(filename,'wb')
+    pickle.dump(obj,outfile)
+    outfile.close()
+    
+def load_obj (filename):
+    infile = open(filename,'rb')
+    obj = pickle.load(infile)
+    infile.close()
+    
+    return obj
