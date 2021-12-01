@@ -111,3 +111,19 @@ def load_obj (filename):
     infile.close()
     
     return obj
+
+def load_class_list(value):
+    class_list = sorted(list(set(load_obj("class_list"))))
+    class_dict = {f"{i}": x for i, x in enumerate(class_list)}
+    return class_dict[f'{value}'] 
+
+
+def single_image_predict(path):
+    svm = load_obj("svm_model")
+    path = pathlib.Path(path)
+    if path.exists():
+        x = compute_hog(str(path.absolute()))
+        x = x.reshape(1 , -1)
+        pridict = svm.predict(x)
+        label = load_class_list(pridict.tolist()[0])   
+        return label
