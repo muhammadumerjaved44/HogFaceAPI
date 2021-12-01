@@ -57,9 +57,6 @@ x_train , x_test , y_train , y_test = train_test_split(features_df,
 
 svm_model.fit(x_train , y_train)
 
-
-
-
 ## roc code
 
 y_new = y_test.loc[(y_test['label'] == 4) | (y_test['label'] == 15)]
@@ -96,17 +93,3 @@ y_pred = svm_model.predict(x_test)
 
 cm = metrics.confusion_matrix(y_test, y_pred)
 sns.heatmap(cm , annot= True)
-
-
-
-
-
-
-
-
-     
-
-                             
-       
-   
-
