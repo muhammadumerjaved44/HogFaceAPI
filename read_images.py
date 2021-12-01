@@ -127,3 +127,25 @@ def single_image_predict(path):
         pridict = svm.predict(x)
         label = load_class_list(pridict.tolist()[0])   
         return label
+ 
+
+
+    
+    
+    
+if __name__ == "__main__":
+    
+    # folder_path_list = glob.glob('faces/**/**')
+    # hog_list, class_name_list = make_dataset(folder_path_list)
+    
+    # svm_model =train_model(hog_list, class_name_list)
+    
+    path = "faces/boland/C/boland_left_angry_open.pgm"
+    result = single_image_predict(path)
+
+
+    
+   
+
+
+
