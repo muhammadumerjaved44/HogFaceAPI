@@ -30,33 +30,35 @@ def compute_hog(image_path):
         cells_per_block=(2, 2), transform_sqrt=True, block_norm='L2-Hys')
     return hog_desc
 
+def make_dataset(folder_path_list):
+    images_list = []
+    hog_list = []
+    class_name_list = []
 for folder_path in folder_path_list:
    images_set = glob.glob(f'{folder_path}/*open.pgm')
    images_list.extend(images_set)
 for image_path in images_list:
     class_name_list.append(os.path.dirname(image_path).split('\\')[-1])
     hog_list.append(compute_hog(image_path))
+    save_obj(class_name_list, "class_list")
+    return hog_list, class_name_list
 
 
+def train_model(hog_list, class_name_list):
+    # hog_list = data_list
 label_encoder = preprocessing.LabelEncoder()
 features_df = pd.DataFrame(hog_list)
 class_df = pd.DataFrame(class_name_list, columns={'label'})
-
 class_df =  pd.DataFrame(label_encoder.fit_transform(class_df['label']), columns={'label'})
-# class_df = class_df[0].unique()
-
-# features_df['columns'] =  class_name_list
-
 svm_model = LinearSVC()
-
 x_train , x_test , y_train , y_test = train_test_split(features_df, 
                                                        class_df, 
                                                        random_state= 0, 
                                                        test_size= 0.2,
                                                        stratify=class_df)
-
-
 svm_model.fit(x_train , y_train)
+    save_obj(svm_model, "svm_model")
+    return svm_model
 
 ## roc code
 
