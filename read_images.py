@@ -60,8 +60,8 @@ svm_model.fit(x_train , y_train)
     save_obj(svm_model, "svm_model")
     return svm_model
 
+def plot_roc(x_train , x_test , y_train , y_test, svm_model):
 ## roc code
-
 y_new = y_test.loc[(y_test['label'] == 4) | (y_test['label'] == 15)]
 y_new = np.where(y_new==4, 1, -1)
 x_new =  x_test.loc[(y_test['label'] == 4) | (y_test['label'] == 15)]
@@ -96,3 +96,5 @@ y_pred = svm_model.predict(x_test)
 
 cm = metrics.confusion_matrix(y_test, y_pred)
 sns.heatmap(cm , annot= True)
+    
+    return svm_model
