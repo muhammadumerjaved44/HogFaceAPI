@@ -130,4 +130,7 @@ dmypy.json
 
 *.pgm
 *.jpg
-*png
+*.png
+
+svm_model
+class_list
